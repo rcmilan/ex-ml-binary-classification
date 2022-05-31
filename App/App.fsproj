@@ -7,14 +7,12 @@
 
   <ItemGroup>
     <None Include="Data\README.md" />
-    <Content Include="Data\wikiDetoxAnnotated40kRows.tsv.txt" />
+    <None Include="Data\wikiDetoxAnnotated40kRows.tsv.rar" />
     <None Include="MLModels\README.md" />
     <Compile Include="DataStructures.fs" />
     <Compile Include="Common.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
-
-  <ItemGroup />
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ML" Version="1.7.1" />
