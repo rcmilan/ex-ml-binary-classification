@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Dados
+/App/Data/wikiDetoxAnnotated40kRows.tsv.txt
+
+# Output
+/App/MLModels/SentimentModel.zip
