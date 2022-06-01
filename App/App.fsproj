@@ -6,9 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Data\README.md" />
-    <None Include="Data\wikiDetoxAnnotated40kRows.tsv.rar" />
-    <None Include="MLModels\README.md" />
     <Compile Include="DataStructures.fs" />
     <Compile Include="Common.fs" />
     <Compile Include="Program.fs" />
