@@ -6,8 +6,8 @@ module ModelActions =
     open Microsoft.ML
     open Microsoft.ML.Transforms.Text
 
-    let createSets<'T>(ctx : MLContext, path : string) =
-        let dataView = ctx.Data.LoadFromTextFile<'T>(path, hasHeader = true)
+    let createSets<'T>(ctx : MLContext, modelPath : string) =
+        let dataView = ctx.Data.LoadFromTextFile<'T>(modelPath, hasHeader = true)
 
         let trainTestSplit = ctx.Data.TrainTestSplit(dataView, testFraction=0.2)
 
@@ -41,15 +41,15 @@ module ModelActions =
         let metrics = ctx.BinaryClassification.Evaluate(predictions, "Label", "Score")
         metrics
 
-    let persist (ctx : MLContext, path : string, trainedModel : ITransformer, trainSet : IDataView)=
-        use fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write)
+    let persist (ctx : MLContext, modelPath : string, trainedModel : ITransformer, trainSet : IDataView)=
+        use fs = new FileStream(modelPath, FileMode.Create, FileAccess.Write, FileShare.Write)
         ctx.Model.Save(trainedModel, trainSet.Schema, fs)
 
-        printfn "The model is saved to %s" path
+        printfn "The model is saved to %s" modelPath
 
-    let testPrediction<'TStatement,'TPrediction when 'TStatement: not struct and 'TPrediction: (new: unit -> 'TPrediction) and 'TPrediction: not struct> (ctx : MLContext, sampleStatement : 'TStatement, path : string) =
+    let testPrediction<'TStatement,'TPrediction when 'TStatement: not struct and 'TPrediction: (new: unit -> 'TPrediction) and 'TPrediction: not struct> (ctx : MLContext, sampleStatement : 'TStatement, modelPath : string) =
 
-        use stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read)
+        use stream = new FileStream(modelPath, FileMode.Open, FileAccess.Read, FileShare.Read)
         let trainedModel, inputSchema = ctx.Model.Load(stream)
 
         // Create prediction engine related to the loaded trained model
