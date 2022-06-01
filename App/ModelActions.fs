@@ -6,8 +6,8 @@ module ModelActions =
     open Microsoft.ML
     open Microsoft.ML.Transforms.Text
 
-    let createSets<'T>(ctx : MLContext, modelPath : string) =
-        let dataView = ctx.Data.LoadFromTextFile<'T>(modelPath, hasHeader = true)
+    let createSets<'T>(ctx : MLContext, dataPath : string) =
+        let dataView = ctx.Data.LoadFromTextFile<'T>(dataPath, hasHeader = true)
 
         let trainTestSplit = ctx.Data.TrainTestSplit(dataView, testFraction=0.2)
 
