@@ -12,7 +12,7 @@ let runML(mlContext: MLContext)=
     let (trainSet, testSet) = createSets<SentimentIssue>(mlContext, dataPath)
 
     // STEP 2: Common data process configuration with pipeline data transformations
-    let dataProcessPipeline = createDataProcessPipeline<SentimentIssue>(mlContext, trainSet, false)
+    let dataProcessPipeline = createDataProcessPipeline<SentimentIssue>(mlContext, trainSet, true)
 
     // STEP 3: Set the training algorithm, then create and config the modelBuilder
     let trainingPipeline = createTrainingPipeline(mlContext, dataProcessPipeline)
