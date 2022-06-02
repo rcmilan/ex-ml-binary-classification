@@ -18,10 +18,10 @@ module ModelActions =
 
         if peekData then
             // (OPTIONAL) Peek data (such as 2 records) in training DataView after applying the ProcessPipeline's transformations into "Features"
-            Common.ConsoleHelper.peekDataViewInConsole ctx trainSet pipeline 2 |> ignore
+            Common.ConsoleHelper.peekDataViewInConsole ctx trainSet pipeline 5 |> ignore
 
             //Peak the transformed features column
-            Common.ConsoleHelper.peekVectorColumnDataInConsole ctx "Features" trainSet pipeline 1 |> ignore
+            //Common.ConsoleHelper.peekVectorColumnDataInConsole ctx "Features" trainSet pipeline 10 |> ignore
 
         pipeline
 
