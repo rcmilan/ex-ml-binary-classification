@@ -1,3 +1,2 @@
 # ex-ml
-
-Implementação de Machine Learning
+Binary Classification
