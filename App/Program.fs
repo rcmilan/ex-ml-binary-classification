@@ -43,15 +43,13 @@ match trainM.ToLower() with
 printf "Statement: "
 let statementText = Console.ReadLine()
 
-let sampleStatement = { Label = false; Text = statementText }
+let sampleStatement = { Label = true; Text = statementText }
 let resultprediction = testPrediction(mlContext, sampleStatement, modelPath)
 
+let sentiment = Convert.ToBoolean(resultprediction.Prediction)
+
 printfn "=============== Single Prediction  ==============="
-printfn
-    "Text: %s | Prediction: %s sentiment | Probability: %f"
-    sampleStatement.Text
-    (if Convert.ToBoolean(resultprediction.Prediction) then "Negative" else "Positive")
-    resultprediction.Probability
+printfn "Text: %s | Prediction: %s sentiment | Probability: %f" sampleStatement.Text (if sentiment then "Negative" else "Positive") resultprediction.Probability
 printfn "=================================================="
 
 Common.ConsoleHelper.consoleWriteHeader "=============== End of process, hit any key to finish ==============="
